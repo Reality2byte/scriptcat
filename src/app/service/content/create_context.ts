@@ -171,10 +171,13 @@ descsCache.clear(); // 内存释放
 // OwnPropertyDescriptor定义 为 原OwnPropertyDescriptor定义 (DragEvent, MouseEvent, RegExp, EventTarget, JSON等)
 //  + 覆盖定义 (document, location, setTimeout, setInterval, addEventListener 等)
 // sharedInitCopy: ScriptCat脚本共通使用
-const sharedInitCopy = Object.create(Object.getPrototypeOf(global), {
-  ...initOwnDescs,
-  ...overridedDescs,
-});
+const sharedInitCopy = Object.create(
+  {},
+  {
+    ...initOwnDescs,
+    ...overridedDescs,
+  }
+);
 
 type GMWorldContext = typeof globalThis & Record<PropertyKey, any>;
 
